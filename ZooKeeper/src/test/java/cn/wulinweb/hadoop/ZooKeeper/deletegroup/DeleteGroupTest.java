@@ -1,4 +1,4 @@
-package cn.wulinweb.hadoop.ZooKeeper.joingroup;
+package cn.wulinweb.hadoop.ZooKeeper.deletegroup;
 
 import java.io.IOException;
 
@@ -7,37 +7,32 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.wulinweb.hadoop.ZooKeeper.joingroup.JoinGroup;
-
-public class JoinGroupTest {
+public class DeleteGroupTest {
 	private static final String HOSTS = "192.168.1.137";
 	private static final String groupName = "zoo";
-	private static final String memberName = "zoo4";
 	
-	private JoinGroup joinGroup = null;
+	private DeleteGroup deleteGroup = null;
 	
 	@Before
 	public void init() throws IOException, InterruptedException {
-		joinGroup = new JoinGroup();
-		joinGroup.connection(HOSTS);
+		deleteGroup = new DeleteGroup();
+		deleteGroup.connection(HOSTS);
 	}
 	
 	@Test
-	public void testJoin() throws IOException, InterruptedException, KeeperException {
-		joinGroup.join(groupName, memberName);
-		
-//		Thread.sleep(10000);
+	public void testDelete() throws IOException, InterruptedException, KeeperException {
+		deleteGroup.delete(groupName);
 	}
 	
 	@After
 	public void destroy() throws InterruptedException {
-		if(null != joinGroup){
+		if(null != deleteGroup){
 			try {
-				joinGroup.close();
+				deleteGroup.close();
 			} catch (InterruptedException e) {
 				throw e;
 			}finally{
-				joinGroup = null;
+				deleteGroup = null;
 				System.gc();
 			}
 		}
