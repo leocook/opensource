@@ -1,4 +1,4 @@
-package cn.wulinweb.hadoop.ZooKeeper;
+package cn.wulinweb.hadoop.ZooKeeper.joingroup;
 
 import java.io.IOException;
 
@@ -6,6 +6,8 @@ import org.apache.zookeeper.KeeperException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import cn.wulinweb.hadoop.ZooKeeper.joingroup.JoinGroup;
 
 public class JoinGroupTest {
 	private static final String HOSTS = "192.168.1.137";

@@ -1,4 +1,4 @@
-package cn.wulinweb.hadoop.ZooKeeper;
+package cn.wulinweb.hadoop.ZooKeeper.joingroup;
 
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
