@@ -4,6 +4,8 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs.Ids;
 
+import cn.wulinweb.hadoop.ZooKeeper.util.ConnectionWatcher;
+
 public class JoinGroup extends ConnectionWatcher {
 	public void join(String groupName, String memberName) throws KeeperException, InterruptedException {
 		String path = "/" + groupName + "/" + memberName;

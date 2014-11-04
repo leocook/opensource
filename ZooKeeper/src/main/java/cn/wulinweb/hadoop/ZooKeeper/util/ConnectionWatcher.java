@@ -1,4 +1,4 @@
-package cn.wulinweb.hadoop.ZooKeeper.joingroup;
+package cn.wulinweb.hadoop.ZooKeeper.util;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
