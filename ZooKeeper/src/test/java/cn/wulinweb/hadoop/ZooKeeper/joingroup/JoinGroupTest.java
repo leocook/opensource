@@ -11,8 +11,8 @@ import cn.wulinweb.hadoop.ZooKeeper.joingroup.JoinGroup;
 
 public class JoinGroupTest {
 	private static final String HOSTS = "192.168.1.137";
-	private static final String groupName = "zoo";
-	private static final String memberName = "zoo4";
+	private static final String groupName = "zoo/zoo4";
+	private static final String memberName = "zoo5";
 	
 	private JoinGroup joinGroup = null;
 	

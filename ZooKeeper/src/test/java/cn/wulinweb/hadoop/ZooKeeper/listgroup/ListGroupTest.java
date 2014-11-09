@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class ListGroupTest {
 	private static final String HOSTS = "192.168.1.137";
-	private static final String groupName = "";
+	private static final String groupName = "zoo";
 	
 	private ListGroup listGroup = null;
 	
