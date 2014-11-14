@@ -10,7 +10,8 @@ import org.junit.Test;
 import cn.wulinweb.hadoop.ZooKeeper.creategroup.CreateGroup;
 
 public class CreateGroupTest {
-	private static String hosts = "192.168.1.137";
+	private static String hosts = "192.168.1.8";
+//	private static String hosts = "192.168.253.190";
 	private static String groupName = "zoo";
 	
 	private CreateGroup createGroup = null;
@@ -42,7 +43,6 @@ public class CreateGroupTest {
 			createGroup = null;
 			System.gc();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

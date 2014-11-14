@@ -10,9 +10,10 @@ import org.junit.Test;
 import cn.wulinweb.hadoop.ZooKeeper.joingroup.JoinGroup;
 
 public class JoinGroupTest {
-	private static final String HOSTS = "192.168.1.137";
-	private static final String groupName = "zoo/zoo4";
-	private static final String memberName = "zoo5";
+//	private static final String HOSTS = "192.168.1.137";
+	private static final String HOSTS = "192.168.253.190";
+	private static final String groupName = "zoo";
+	private static final String memberName = "zoo4";
 	
 	private JoinGroup joinGroup = null;
 	
@@ -26,7 +27,7 @@ public class JoinGroupTest {
 	public void testJoin() throws IOException, InterruptedException, KeeperException {
 		joinGroup.join(groupName, memberName);
 		
-//		Thread.sleep(10000);
+//		Thread.sleep(Long.MAX_VALUE);
 	}
 	
 	@After

@@ -25,9 +25,9 @@ public class ConnectionWatcher implements Watcher {
 
 	public void process(WatchedEvent event) {
 		KeeperState state = event.getState();
-		LOGGER.debug(state.toString());
+//		LOGGER.debug(state.toString());
 		
-		System.out.println(state.toString());
+//		System.out.println(state.toString());
 		
 		if(state == KeeperState.SyncConnected){
 			countDownLatch.countDown();
