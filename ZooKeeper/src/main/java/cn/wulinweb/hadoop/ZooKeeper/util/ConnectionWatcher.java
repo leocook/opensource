@@ -18,16 +18,18 @@ import org.slf4j.LoggerFactory;
 public class ConnectionWatcher implements Watcher {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionWatcher.class);
 	
-	private static final int SESSION_TIMEOUT = 5000;
+	private static final int SESSION_TIMEOUT = 2000;
 	
 	protected ZooKeeper zk = null;
+	private String hosts = null;
 	private CountDownLatch countDownLatch = new CountDownLatch(1);
 
 	public void process(WatchedEvent event) {
 		KeeperState state = event.getState();
 //		LOGGER.debug(state.toString());
-		
-//		System.out.println(state.toString());
+
+		System.out.print(event.getType()+"*****");
+		System.out.println(state.toString());
 		
 		if(state == KeeperState.SyncConnected){
 			countDownLatch.countDown();
@@ -40,7 +42,14 @@ public class ConnectionWatcher implements Watcher {
 		}else if (state == KeeperState.SaslAuthenticated) {
 			
 		}else if (state == KeeperState.Expired) {
-			
+			countDownLatch = new CountDownLatch(1);
+			try {
+				connection(hosts);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -51,6 +60,7 @@ public class ConnectionWatcher implements Watcher {
 	 * @throws InterruptedException
 	 */
 	public void connection(String hosts) throws IOException, InterruptedException {
+		this.hosts = hosts;
 		zk = new ZooKeeper(hosts, SESSION_TIMEOUT, this);
 		countDownLatch.await();
 	}

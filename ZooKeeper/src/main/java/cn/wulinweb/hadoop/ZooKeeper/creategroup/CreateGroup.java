@@ -13,17 +13,16 @@ import org.apache.zookeeper.ZooKeeper;
 
 public class CreateGroup implements Watcher{
 	private static final int SESSION_TIMEOUT = 1000;//会话延时
-	
+
 	private ZooKeeper zk = null;
-	private CountDownLatch countDownLatch = new CountDownLatch(1);
-	
+	private CountDownLatch countDownLatch = new CountDownLatch(1);//同步计数器
 
 	public void process(WatchedEvent event) {
 		if(event.getState() == KeeperState.SyncConnected){
-			countDownLatch.countDown();
+			countDownLatch.countDown();//计数器减一
 		}
 	}
-	
+
 	/**
 	 * 创建zk对象
 	 * 当客户端连接上zookeeper时会执行process(event)里的countDownLatch.countDown()，计数器的值变为0，则countDownLatch.await()方法返回。
@@ -33,7 +32,7 @@ public class CreateGroup implements Watcher{
 	 */
 	public void connect(String hosts) throws IOException, InterruptedException {
 		zk = new ZooKeeper(hosts, SESSION_TIMEOUT, this);
-		countDownLatch.await();
+		countDownLatch.await();//阻塞程序继续执行
 	}
 	
 	/**
@@ -65,5 +64,4 @@ public class CreateGroup implements Watcher{
 			}
 		}
 	}
-	
 }

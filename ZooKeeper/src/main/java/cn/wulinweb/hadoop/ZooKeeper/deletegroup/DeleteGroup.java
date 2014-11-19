@@ -16,6 +16,7 @@ public class DeleteGroup extends ConnectionWatcher {
 		
 		try {
 			List<String> children = zk.getChildren(path, false);
+			
 			for(String child : children){
 				zk.delete(path + "/" + child, -1);
 			}

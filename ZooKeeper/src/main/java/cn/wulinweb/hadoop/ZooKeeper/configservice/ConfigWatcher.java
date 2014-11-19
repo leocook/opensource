@@ -19,7 +19,7 @@ public class ConfigWatcher implements Watcher {
 	
 	/**
 	 * 显示配置
-	 * @throws KeeperException 服务器发出错误信号或是服务器存在通信故障。该类现在共有22个子类，
+	 * @throws KeeperException 服务器发出错误信号或是服务器存在通信故障。该类现在共有21个子类，
 	 * 分为3大类：<br/>
 	 * 1、状态异常(如：BadVersionException、NoChildrenForEphemeralsException)；
 	 * 2、可恢复的异常（如：ConnectionLossException）；

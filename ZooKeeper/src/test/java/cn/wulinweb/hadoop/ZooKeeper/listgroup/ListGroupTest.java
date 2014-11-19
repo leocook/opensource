@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ListGroupTest {
-//	private static final String HOSTS = "192.168.1.137";
-	private static final String HOSTS = "192.168.253.190";
+	private static final String HOSTS = "192.168.1.8";
+//	private static final String HOSTS = "192.168.253.190";
 	private static final String groupName = "zoo";
 	
 	private ListGroup listGroup = null;
@@ -24,7 +24,7 @@ public class ListGroupTest {
 	public void testList() throws IOException, InterruptedException, KeeperException {
 		listGroup.list(groupName);
 		
-//		Thread.sleep(Long.MAX_VALUE);
+		Thread.sleep(Long.MAX_VALUE);
 	}
 	
 	@After

@@ -12,7 +12,7 @@ import cn.wulinweb.hadoop.ZooKeeper.creategroup.CreateGroup;
 public class CreateGroupTest {
 	private static String hosts = "192.168.1.8";
 //	private static String hosts = "192.168.253.190";
-	private static String groupName = "zoo";
+	private static String groupName = "zoo/zookeeper";
 	
 	private CreateGroup createGroup = null;
 	

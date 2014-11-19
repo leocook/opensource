@@ -9,8 +9,11 @@ import cn.wulinweb.hadoop.ZooKeeper.util.ConnectionWatcher;
 public class ListGroup extends ConnectionWatcher {
 	public void list(String groupName) {
 		String path ="/" + groupName;
+		zk.register(this);
 		try {
-			List<String> children = zk.getChildren(path, false);
+//			zk.delete(path+"/"+"zoo2", -1);
+			
+			List<String> children = zk.getChildren(path, this);
 			if(children.isEmpty()){
 				System.out.printf("No members in group %s.\n",  groupName);
 				System.exit(1);
@@ -19,6 +22,12 @@ public class ListGroup extends ConnectionWatcher {
 			for(String child : children){
 				System.out.println(child);
 			}
+			
+			
+//			if(zk.exists(path+"/"+"zoo3", this) != null){
+//				zk.setData(path+"/"+"zoo3", "aaaaaaa".getBytes(), -1);
+//				System.out.println("xxxsss");
+//			}
 		} catch (KeeperException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
