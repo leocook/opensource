@@ -31,6 +31,9 @@ public class ActiveKeyValueStore extends ConnectionWatcher {
 			} catch(KeeperException.SessionExpiredException e){
 				//TODO 此处会话过期，抛出异常，由上层调用来重新创建zookeeper对象
 				throw e;
+			}catch(KeeperException.AuthFailedException e){
+				//TODO 此处身份验证时，抛出异常，由上层来终止程序运行
+				throw e;
 			}catch (KeeperException e) {
 				//检查有没有超出尝试的次数
 				if(retries == MAXRETRIES){
