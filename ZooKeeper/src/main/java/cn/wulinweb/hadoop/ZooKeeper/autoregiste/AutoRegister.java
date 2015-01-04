@@ -1,55 +1,29 @@
-package cn.wulinweb.hadoop.ZooKeeper.util;
+package cn.wulinweb.hadoop.ZooKeeper.autoregiste;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooKeeper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.zookeeper.Watcher.Event.KeeperState;
 
 /**
- * 连接的观察者，封装了zk的创建等
+ * 自动注册类
  * @author leo
- *
  */
-public class ConnectionWatcher implements Watcher {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionWatcher.class);
-	
+public class AutoRegister implements Watcher {
+	private CountDownLatch countDownLatch = new CountDownLatch(1);
 	private static final int SESSION_TIMEOUT = 2000;
 	
 	protected ZooKeeper zk = null;
 	private String hosts = null;
-	private CountDownLatch countDownLatch = new CountDownLatch(1);
-
+	
 	public void process(WatchedEvent event) {
 		KeeperState state = event.getState();
-//		LOGGER.debug(state.toString());
-
-//		System.out.print(event.getType()+"*****");
-//		System.out.println(state.toString());
-
+		
 		if(state == KeeperState.SyncConnected){
 			countDownLatch.countDown();
-		}else if (state == KeeperState.AuthFailed) {
-			
-		}else if (state == KeeperState.Disconnected) {
-			
-		}else if (state == KeeperState.ConnectedReadOnly) {
-			
-		}else if (state == KeeperState.SaslAuthenticated) {
-			
-		}else if (state == KeeperState.Expired) {
-			countDownLatch = new CountDownLatch(1);
-			try {
-				connection(hosts);
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 	
@@ -81,5 +55,5 @@ public class ConnectionWatcher implements Watcher {
 			}
 		}
 	}
-
+	
 }

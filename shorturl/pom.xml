@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cn.wulinweb.moxiu</groupId>
+  <artifactId>shorturl</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>shorturl</name>
+  <url>http://maven.apache.org</url>
+  
+  <repositories>
+	  <repository>
+	    <id>central</id>
+	    <url>http://repo1.maven.org/maven2/</url>
+	  </repository>
+  	<repository>
+    <id>sonatype-releases</id>
+    <url>https://oss.sonatype.org/content/repositories/releases/</url>
+  </repository>
+  </repositories>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.11</junit.version>
+    <jackson-all.version>1.9.11</jackson-all.version>
+    <mongodb.driver.version>2.7.1</mongodb.driver.version>
+    <servlet.version>3.0.1</servlet.version>
+    <slf4j.version>1.7.7</slf4j.version>
+    <java.version>1.6</java.version>
+  </properties>
+
+<dependencyManagement>
+	<dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+	  <groupId>org.codehaus.jackson</groupId>
+	  <artifactId>jackson-core-asl</artifactId>
+	  <version>${jackson-all.version}</version>
+    </dependency>
+    <dependency>
+	  <groupId>com.mongodb</groupId>
+	  <artifactId>mongo-java-driver</artifactId>
+	  <version>${mongodb.driver.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>${servlet.version}</version>
+ </dependency>
+ 
+	 <dependency>
+			  <groupId>org.slf4j</groupId>
+			  <artifactId>slf4j-log4j12</artifactId>
+			  <version>${slf4j.version}</version>
+		</dependency>
+			
+		<dependency>
+			  <groupId>org.slf4j</groupId>
+			  <artifactId>jcl-over-slf4j</artifactId>
+			  <version>${slf4j.version}</version>
+		</dependency>
+  </dependencies>
+</dependencyManagement>
+
+<build>
+	<pluginManagement>
+		 <plugins>
+		<plugin>  
+			<groupId>org.apache.maven.plugins</groupId>  
+			<artifactId>maven-compiler-plugin</artifactId>  
+			<configuration>  
+				<source>${java.version}</source>  
+				<target>${java.version}</target>  
+			</configuration>  
+		</plugin>  
+	</plugins>
+	</pluginManagement>
+</build>
+  
+  <modules>
+  	<module>shorturlservice1</module>
+  </modules>
+  
+  
+</project>
