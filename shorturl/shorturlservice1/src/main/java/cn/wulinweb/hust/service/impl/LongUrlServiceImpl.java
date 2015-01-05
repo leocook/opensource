@@ -5,20 +5,20 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import cn.wulinweb.hust.bean.LUrlCondition;
+import cn.wulinweb.hust.dao.ShortUrlDao;
 import cn.wulinweb.hust.dao.impl.ShortUrlDaoImpl;
+import cn.wulinweb.hust.service.CacheService;
+import cn.wulinweb.hust.service.LongUrlService;
 import cn.wulinweb.hust.util.Convertor;
 
-public class LongUrlService {
-	private static ShortUrlDaoImpl dao = new ShortUrlDaoImpl();
-	private static CacheServiceImpl cacheServiceImpl = new CacheServiceImpl();
+public class LongUrlServiceImpl implements LongUrlService {
+	private static ShortUrlDao dao = new ShortUrlDaoImpl();
+	private static CacheService cacheService = new CacheServiceImpl();
 	
-	/**
-	 * 拿到短地址
-	 * @param condition
-	 * @return
-	 * @throws UnsupportedEncodingException 
-	 * @throws NoSuchAlgorithmException 
+	/* (non-Javadoc)
+	 * @see cn.wulinweb.hust.service.impl.LongUrlService#getShortUrl(cn.wulinweb.hust.bean.LUrlCondition)
 	 */
+	@Override
 	public String getShortUrl(LUrlCondition condition) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		//记录访问日志
 		this.logging(condition);
@@ -37,7 +37,7 @@ public class LongUrlService {
 			sUrl = list.get(1);
 			dao.insertShortUrl(sUrl, condition.getUrl());
 		}
-		cacheServiceImpl.setKeyValueToCache(sUrl, condition.getUrl());
+		cacheService.setKeyValueToCache(sUrl, condition.getUrl());
 		
 		return sUrl;
 	}

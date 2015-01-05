@@ -8,6 +8,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.wulinweb.hust.dao.ShortUrlDao;
 import cn.wulinweb.hust.util.DBUtil;
 import cn.wulinweb.hust.util.ConfigPool;
 
@@ -19,7 +20,7 @@ import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
-public class ShortUrlDaoImpl {
+public class ShortUrlDaoImpl implements ShortUrlDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShortUrlDaoImpl.class);
 	
 	private Mongo mongo = null;
@@ -43,11 +44,10 @@ public class ShortUrlDaoImpl {
 		}
 	}
 	
-	/**
-	 * 把短地址和长地址存入mongo
-	 * @param sUrl
-	 * @param lUrl
+	/* (non-Javadoc)
+	 * @see cn.wulinweb.hust.dao.impl.ShortUrlDao#insertShortUrl(java.lang.String, java.lang.String)
 	 */
+	@Override
 	public void insertShortUrl(String sUrl, String lUrl) {
 		List<DBObject> list = new LinkedList<DBObject>();
 		
@@ -59,11 +59,10 @@ public class ShortUrlDaoImpl {
 		collShortToLong.save(doc);
 	}
 	
-	/**
-	 * 根据短地址查找出长地址
-	 * @param sUrl
-	 * @return
+	/* (non-Javadoc)
+	 * @see cn.wulinweb.hust.dao.impl.ShortUrlDao#getLongUrlByShort(java.lang.String)
 	 */
+	@Override
 	public String getLongUrlByShort(String sUrl) {
 		String string = null;
 		DBObject dbObject = new BasicDBObject("sUrl", sUrl);
@@ -77,11 +76,10 @@ public class ShortUrlDaoImpl {
 		return string;
 	}
 	
-	/**
-	 * 根据长地址查找出短地址
-	 * @param lUrl
-	 * @return
+	/* (non-Javadoc)
+	 * @see cn.wulinweb.hust.dao.impl.ShortUrlDao#getShortByLongUrl(java.lang.String)
 	 */
+	@Override
 	public String getShortByLongUrl(String lUrl) {
 		String string = null;
 		DBObject dbObject = new BasicDBObject("lUrl", lUrl);
@@ -122,13 +120,10 @@ public class ShortUrlDaoImpl {
 		}
 	}
 	
-	/**
-	 * 记录日志
-	 * @param date
-	 * @param ip
-	 * @param token
-	 * @param url
+	/* (non-Javadoc)
+	 * @see cn.wulinweb.hust.dao.impl.ShortUrlDao#logging(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
+	@Override
 	public void logging(String date, String ip, String token, String url) {
 		List<DBObject> list = new LinkedList<DBObject>();
 		

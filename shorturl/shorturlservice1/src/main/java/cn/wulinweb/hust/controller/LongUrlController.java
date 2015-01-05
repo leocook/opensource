@@ -12,11 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.wulinweb.hust.bean.LUrlCondition;
-import cn.wulinweb.hust.service.impl.LongUrlService;
+import cn.wulinweb.hust.service.LongUrlService;
+import cn.wulinweb.hust.service.impl.LongUrlServiceImpl;
 import cn.wulinweb.hust.util.ControllerUtil;
 
 public class LongUrlController extends HttpServlet {
-	private static LongUrlService service = new LongUrlService();
+	private static LongUrlService service = new LongUrlServiceImpl();
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongUrlController.class);
 
 	//localhost:8080/HushDemo/LongUrlController?param={"type":0,"url":"http://weibo.com","date":"2014/12/30 14:10:32","token":"adasdasdasdasdad","ip":"156.25.11.223"}

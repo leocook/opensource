@@ -14,13 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.wulinweb.hust.service.ShortUrlService;
 import cn.wulinweb.hust.service.impl.ShortUrlServiceImpl;
 
 public class ShortUrlFitler implements Filter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShortUrlFitler.class);
 	
 	private String longUrlController;
-	private static ShortUrlServiceImpl service = new ShortUrlServiceImpl();
+	private static ShortUrlService service = new ShortUrlServiceImpl();
 
 	@Override
 	public void destroy() {
