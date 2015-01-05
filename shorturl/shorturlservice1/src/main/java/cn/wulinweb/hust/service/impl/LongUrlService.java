@@ -10,6 +10,7 @@ import cn.wulinweb.hust.util.Convertor;
 
 public class LongUrlService {
 	private static ShortUrlDaoImpl dao = new ShortUrlDaoImpl();
+	private static CacheServiceImpl cacheServiceImpl = new CacheServiceImpl();
 	
 	/**
 	 * 拿到短地址
@@ -21,6 +22,8 @@ public class LongUrlService {
 	public String getShortUrl(LUrlCondition condition) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		//记录访问日志
 		this.logging(condition);
+		
+		//TODO:查看缓存中有没有这个长地址，没有的话再来查看数据库
 		
 		//查看库中有没有这个地址
 		//有的话
@@ -34,6 +37,7 @@ public class LongUrlService {
 			sUrl = list.get(1);
 			dao.insertShortUrl(sUrl, condition.getUrl());
 		}
+		cacheServiceImpl.setKeyValueToCache(sUrl, condition.getUrl());
 		
 		return sUrl;
 	}

@@ -1,6 +1,5 @@
 package cn.wulinweb.hust.dao.impl;
 
-import java.net.UnknownHostException;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +8,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cn.wulinweb.hust.util.ShortUrlUtil;
+import cn.wulinweb.hust.util.DBUtil;
+import cn.wulinweb.hust.util.ConfigPool;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -22,7 +22,7 @@ import com.mongodb.MongoException;
 public class ShortUrlDaoImpl {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShortUrlDaoImpl.class);
 	
-	private Mongo conn = null;
+	private Mongo mongo = null;
 	private DB dbShortToLong = null;
 	private DBCollection collShortToLong = null;
 	private DBCollection accessLog = null;
@@ -31,15 +31,14 @@ public class ShortUrlDaoImpl {
 		super();
 		
 		try {
-			conn = new Mongo(ShortUrlUtil.MONGO_URL, ShortUrlUtil.MONGO_PORT);
-			dbShortToLong = conn.getDB(ShortUrlUtil.DB_SHORT_TO_LONG);
+			mongo = DBUtil.getMongo();
+			
+			dbShortToLong = mongo.getDB(ConfigPool.DB_SHORT_TO_LONG);
 			
 			dbShortToLong.slaveOk();
-			collShortToLong = dbShortToLong.getCollection(ShortUrlUtil.COLL_SHORT_TO_LONG);
-			accessLog = dbShortToLong.getCollection(ShortUrlUtil.ACCESS_LOG);
-		} catch (UnknownHostException e) {
-			LOGGER.error(e.getMessage());
-		} catch (MongoException e) {
+			collShortToLong = dbShortToLong.getCollection(ConfigPool.COLL_SHORT_TO_LONG);
+			accessLog = dbShortToLong.getCollection(ConfigPool.ACCESS_LOG);
+		}  catch (MongoException e) {
 			LOGGER.error(e.getMessage());
 		}
 	}
@@ -118,7 +117,7 @@ public class ShortUrlDaoImpl {
 	}
 	
 	protected void getAllDatabase() {
-		for(String name:conn.getDatabaseNames()){
+		for(String name : mongo.getDatabaseNames()){
 			System.out.println(name);
 		}
 	}

@@ -41,6 +41,12 @@
 			  <groupId>org.slf4j</groupId>
 			  <artifactId>jcl-over-slf4j</artifactId>
 		</dependency>
+		
+		<dependency>
+		  <groupId>com.whalin</groupId>
+		  <artifactId>Memcached-Java-Client</artifactId>
+		  <version>3.0.2</version>
+		</dependency>
   </dependencies>
   
   <build>
@@ -65,6 +71,7 @@
           <version>2.1</version>
 		  <configuration>
 		     <path>/shorturlservice1</path>
+		     <!-- <url>http://10.0.0.24:8080/manager/</url> -->
 		     <url>http://localhost:8080/manager/</url>
 		     <server>tomcat</server>
 		  </configuration>
@@ -73,7 +80,7 @@
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
           <version>2.1</version><configuration>  
-                <url>http://localhost:8080/manager/text</url>   
+                <url>http://10.0.0.24:8080/manager/text</url>   
                 <server>tomcat7</server> 
                 <username>admin</username> 
                 <password>admin</password> 
